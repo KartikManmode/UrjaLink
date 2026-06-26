@@ -292,11 +292,12 @@ function App() {
             </span>
           </a>
           <ul className="nav-links">
+            <li><a href="#about" className="nav-link">About Us</a></li>
             <li><a href="#benefits" className="nav-link">Benefits</a></li>
             <li><a href="#process" className="nav-link">Process</a></li>
             <li><a href="#catalog" className="nav-link">Products</a></li>
             <li><a href="#checker" className="nav-link">Suitability Check</a></li>
-            <li><a href="#contact" className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '14px' }}>Get Started</a></li>
+            <li><a href="#contact" className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '14px' }}>Contact Us</a></li>
           </ul>
         </div>
       </nav>
@@ -375,6 +376,49 @@ function App() {
               <div className="spec-text">
                 <h4>Certified Safe</h4>
                 <p>ARAI & CE Certified IP55</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className="section" style={{ backgroundColor: '#ffffff', borderBottom: '1px solid var(--border-color)' }}>
+        <div className="container">
+          <div className="about-grid">
+            <div className="about-mission-card">
+              <span className="about-badge-green">Who We Are</span>
+              <h2 style={{ fontSize: '38px', fontWeight: '800', marginBottom: '18px', color: '#0f172a' }}>
+                Powering India's Green Energy Future
+              </h2>
+              <p>
+                Urja Link is a forward-looking EV infrastructure pioneer. We help commercial landowners, highway service centers, hotels, and fleets design and install robust charging networks that drive profitability and carbon-neutral transit.
+              </p>
+              <p style={{ fontSize: '15px' }}>
+                Our deep technical expertise bridges the gap between complex power grids and property owners. By providing end-to-end support—from transformer capacity analysis to seamless digital billing portals—we make starting an EV station simple, safe, and efficient.
+              </p>
+            </div>
+            
+            <div className="about-features">
+              <div className="about-feature-box">
+                <span className="about-feature-icon">🛡️</span>
+                <h4>ARAI & CE Quality</h4>
+                <p>We deploy charging units built with rigorous all-weather mechanical safety protections.</p>
+              </div>
+              <div className="about-feature-box">
+                <span className="about-feature-icon">⚡</span>
+                <h4>High-Speed Tech</h4>
+                <p>Output capabilities ranging from 30kW up to 480kW with advanced dual-gun load balancing.</p>
+              </div>
+              <div className="about-feature-box">
+                <span className="about-feature-icon">🌐</span>
+                <h4>Smart Grid Ready</h4>
+                <p>OCPP 1.6 cloud systems offering automated RFID billing, mapping updates, and tariff settings.</p>
+              </div>
+              <div className="about-feature-box">
+                <span className="about-feature-icon">🤝</span>
+                <h4>Complete Guidance</h4>
+                <p>Site layout planning, electrical designs, and visibility listings all managed by our team.</p>
               </div>
             </div>
           </div>
@@ -938,10 +982,12 @@ function App() {
             <div>
               <h4 className="footer-heading">Navigation</h4>
               <ul className="footer-links">
+                <li><a href="#about">About Us</a></li>
                 <li><a href="#benefits">Benefits</a></li>
                 <li><a href="#process">Process</a></li>
                 <li><a href="#catalog">Hardware Range</a></li>
                 <li><a href="#checker">Suitability Check</a></li>
+                <li><a href="#contact">Contact Us</a></li>
               </ul>
             </div>
             <div>
