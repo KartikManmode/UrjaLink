@@ -66,14 +66,14 @@ def get_gspread_client():
     print("❌ [SHEETS ERROR] Neither GOOGLE_SERVICE_ACCOUNT_JSON env var nor credentials.json file found.")
     return None
 
-def append_to_google_sheet(lead: ContactLead):
+def append_to_google_sheet(lead: ContactLead) -> bool:
     """
-    Appends a new inquiry row to the Google Sheet.
+    Appends a new inquiry row to the Google Sheet. Returns True on success, False on failure.
     """
     try:
         gc = get_gspread_client()
         if not gc:
-            return
+            return False
             
         sheet = gc.open(GOOGLE_SHEET_NAME).sheet1
         
@@ -90,25 +90,33 @@ def append_to_google_sheet(lead: ContactLead):
         
         sheet.append_row(row)
         print(f"✅ [SHEETS SUCCESS] Successfully appended lead from {lead.name} to '{GOOGLE_SHEET_NAME}'.")
+        return True
         
     except gspread.exceptions.SpreadsheetNotFound:
         print(f"❌ [SHEETS ERROR] Spreadsheet '{GOOGLE_SHEET_NAME}' not found. Did you share it with the service account email?")
+        return False
     except Exception as e:
         print(f"❌ [SHEETS ERROR] Failed to append row: {str(e)}")
+        return False
 
 # ==========================================
 # 4. SERVERLESS API ENDPOINTS
 # ==========================================
 @app.post("/api/contact", status_code=status.HTTP_201_CREATED)
-def handle_contact_submission(lead: ContactLead, background_tasks: BackgroundTasks):
+@app.post("/contact", status_code=status.HTTP_201_CREATED)
+@app.post("/", status_code=status.HTTP_201_CREATED)
+@app.post("", status_code=status.HTTP_201_CREATED)
+def handle_contact_submission(lead: ContactLead):
     """
     Serverless endpoint triggered by React frontend.
+    Runs synchronously so Vercel does not freeze the container before writing to Sheets.
     """
     print(f"\n📨 [NEW SUBMISSION] Received contact payload from: {lead.name} ({lead.location})")
     
-    # Process Google Sheet insertion asynchronously
-    background_tasks.add_task(append_to_google_sheet, lead)
-    # Email feature is paused for now
+    # Execute synchronously to guarantee completion before serverless freeze
+    success = append_to_google_sheet(lead)
+    if not success:
+        raise HTTPException(status_code=500, detail="Failed to append row to Google Sheet. Check server logs.")
     
     return {
         "status": "success",
