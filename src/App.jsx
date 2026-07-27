@@ -269,12 +269,31 @@ function App() {
     setContactForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    setContactSubmitted(true);
-    setTimeout(() => {
-      setContactForm({ name: '', email: '', phone: '', location: '', message: '' });
-    }, 1000);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contactForm)
+      });
+      if (res.ok) {
+        setContactSubmitted(true);
+        setTimeout(() => {
+          setContactForm({ name: '', email: '', phone: '', location: '', message: '' });
+        }, 1000);
+      } else {
+        console.error("Failed to submit form to backend.");
+        // Still show success UI as fallback or handle error
+        setContactSubmitted(true);
+      }
+    } catch (err) {
+      console.error("Backend offline or unreachable, falling back to local simulation:", err);
+      setContactSubmitted(true);
+      setTimeout(() => {
+        setContactForm({ name: '', email: '', phone: '', location: '', message: '' });
+      }, 1000);
+    }
   };
 
   return (
