@@ -283,9 +283,15 @@ function App() {
           setContactForm({ name: '', email: '', phone: '', location: '', message: '' });
         }, 1000);
       } else {
-        console.error("Failed to submit form to backend.");
-        // Still show success UI as fallback or handle error
-        setContactSubmitted(true);
+        let errDetail = "Unknown server error";
+        try {
+          const errData = await res.json();
+          errDetail = errData.detail || JSON.stringify(errData);
+        } catch (e) {
+          errDetail = `HTTP ${res.status}: ${res.statusText}`;
+        }
+        console.error("❌ Failed to submit form to backend. Detail:", errDetail);
+        alert(`Backend Error: ${errDetail}`);
       }
     } catch (err) {
       console.error("Backend offline or unreachable, falling back to local simulation:", err);
