@@ -363,6 +363,135 @@ function App() {
         </div>
       </header>
 
+      {/* Contact & Enquiry Section */}
+      <section id="contact" className="section animate-slide-up">
+        <div className="container">
+          <div className="contact-section-inner">
+            <div className="contact-info-panel">
+              <div>
+                <h3>Get In Touch</h3>
+                <p className="contact-info-desc">
+                  Have questions about grid load requirements, setup costs, or timelines? Reach out and we will clear your doubts.
+                </p>
+              </div>
+
+              <div className="contact-info-list">
+                <div className="contact-info-item">
+                  <div className="contact-info-icon">📞</div>
+                  <div className="contact-info-text">
+                    <h5>Call & WhatsApp</h5>
+                    <p>+91 8390892417</p>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <div className="contact-info-icon">💬</div>
+                  <div className="contact-info-text">
+                    <h5>Alternate Call</h5>
+                    <p>+91 9881022517</p>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <div className="contact-info-icon">✉️</div>
+                  <div className="contact-info-text">
+                    <h5>Email Support</h5>
+                    <p>urjalinkev@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ fontSize: '13px', opacity: 0.7 }}>
+                * Final charger capacity recommendations, site drawings, and budgets are finalized post physical evaluation of grid meters.
+              </div>
+            </div>
+
+            <div className="contact-form-panel">
+              <h3>Start Your Journey</h3>
+              {contactSubmitted ? (
+                <div className="form-success-msg">
+                  ✓ Thank you! Our EV Setup Specialist will get in touch with you shortly on your phone/email.
+                </div>
+              ) : null}
+              <form onSubmit={handleContactSubmit}>
+                <div className="contact-grid">
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="contact-name">Full Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="contact-name"
+                      placeholder="e.g. Rahul Sharma"
+                      required
+                      value={contactForm.name}
+                      onChange={handleContactChange}
+                      className="form-control-input"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="contact-phone">Phone / WhatsApp</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="contact-phone"
+                      placeholder="e.g. +91 9988776655"
+                      required
+                      value={contactForm.phone}
+                      onChange={handleContactChange}
+                      className="form-control-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" htmlFor="contact-email">Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="contact-email"
+                    placeholder="e.g. rahul@example.com"
+                    required
+                    value={contactForm.email}
+                    onChange={handleContactChange}
+                    className="form-control-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" htmlFor="contact-location">Location / City of Property</label>
+                  <input
+                    type="text"
+                    name="location"
+                    id="contact-location"
+                    placeholder="e.g. Lonavala, Maharashtra"
+                    required
+                    value={contactForm.location}
+                    onChange={handleContactChange}
+                    className="form-control-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" htmlFor="contact-message">Property Description & Details</label>
+                  <textarea
+                    name="message"
+                    id="contact-message"
+                    rows="4"
+                    placeholder="Provide details like: total area available, approximate load capability, highway access details..."
+                    required
+                    value={contactForm.message}
+                    onChange={handleContactChange}
+                    className="form-control-textarea"
+                  ></textarea>
+                </div>
+
+                <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+                  Submit Project Details
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Quick Specs */}
       <section className="quick-specs-section">
         <div className="container">
@@ -857,135 +986,6 @@ function App() {
                   Promotional branding materials and layout signs
                 </li>
               </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact & Enquiry Section */}
-      <section id="contact" className="section">
-        <div className="container">
-          <div className="contact-section-inner">
-            <div className="contact-info-panel">
-              <div>
-                <h3>Get In Touch</h3>
-                <p className="contact-info-desc">
-                  Have questions about grid load requirements, setup costs, or timelines? Reach out and we will clear your doubts.
-                </p>
-              </div>
-
-              <div className="contact-info-list">
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">📞</div>
-                  <div className="contact-info-text">
-                    <h5>Call & WhatsApp</h5>
-                    <p>+91 8390892417</p>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">💬</div>
-                  <div className="contact-info-text">
-                    <h5>Alternate Call</h5>
-                    <p>+91 9881022517</p>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">✉️</div>
-                  <div className="contact-info-text">
-                    <h5>Email Support</h5>
-                    <p>urjalinkev@gmail.com</p>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ fontSize: '13px', opacity: 0.7 }}>
-                * Final charger capacity recommendations, site drawings, and budgets are finalized post physical evaluation of grid meters.
-              </div>
-            </div>
-
-            <div className="contact-form-panel">
-              <h3>Start Your Journey</h3>
-              {contactSubmitted ? (
-                <div className="form-success-msg">
-                  ✓ Thank you! Our EV Setup Specialist will get in touch with you shortly on your phone/email.
-                </div>
-              ) : null}
-              <form onSubmit={handleContactSubmit}>
-                <div className="contact-grid">
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="contact-name">Full Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="contact-name"
-                      placeholder="e.g. Rahul Sharma"
-                      required
-                      value={contactForm.name}
-                      onChange={handleContactChange}
-                      className="form-control-input"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="contact-phone">Phone / WhatsApp</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      id="contact-phone"
-                      placeholder="e.g. +91 9988776655"
-                      required
-                      value={contactForm.phone}
-                      onChange={handleContactChange}
-                      className="form-control-input"
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="contact-email">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="contact-email"
-                    placeholder="e.g. rahul@example.com"
-                    required
-                    value={contactForm.email}
-                    onChange={handleContactChange}
-                    className="form-control-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="contact-location">Location / City of Property</label>
-                  <input
-                    type="text"
-                    name="location"
-                    id="contact-location"
-                    placeholder="e.g. Lonavala, Maharashtra"
-                    required
-                    value={contactForm.location}
-                    onChange={handleContactChange}
-                    className="form-control-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="contact-message">Property Description & Details</label>
-                  <textarea
-                    name="message"
-                    id="contact-message"
-                    rows="4"
-                    placeholder="Provide details like: total area available, approximate load capability, highway access details..."
-                    required
-                    value={contactForm.message}
-                    onChange={handleContactChange}
-                    className="form-control-textarea"
-                  ></textarea>
-                </div>
-
-                <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                  Submit Project Details
-                </button>
-              </form>
             </div>
           </div>
         </div>
